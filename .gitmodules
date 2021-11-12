@@ -1,0 +1,3 @@
+[submodule "cats_odoo"]
+	path = cats_odoo
+	url = git@github.com:rzkyif/cats_odoo.git

@@ -1,0 +1,30 @@
+version: "3.8"
+
+services:
+  odoo:
+    image: odoo:14
+    ports:
+      - 8069:8069
+      - 8071:8071
+      - 8072:8072
+    volumes:
+      - odoo-data:/var/lib/odoo
+      - ./cats_odoo:/mnt/extra-addons/cats
+      - ./src:/mnt/extra-addons/file-sharing-terintegrasi
+      - ./odoo:/etc/odoo
+    depends_on:
+      - db
+    command: -- --dev=reload
+
+  db:
+    image: postgres:14-alpine
+    volumes:
+      - psql-data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=odoo
+      - POSTGRES_PASSWORD=odoo
+      - POSTGRES_DB=postgres
+
+volumes:
+  odoo-data:
+  psql-data:
