@@ -4,7 +4,7 @@ from odoo import models, fields
 
 
 class Divisi(models.Model):
-    _name = 'model.akademisid.jabatan'
+    _name = 'model.file_sharing.jabatan'
     _description = 'Jabatan yang dapat dimiliki User'
 
     name = fields.Selection(
