@@ -6,12 +6,22 @@
         <field name="view_mode">tree,form</field>
     </record>
 
+    <record id="file_management" model="ir.actions.act_window">
+        <field name="name">File Management</field>
+        <field name="res_model">filesharing.file</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
     <menuitem id="filesharing_root_menu" name="File Sharing">
         <menuitem
             id="filesharing_user_management_menu"
             name="User management"
             action="user_management"
-        >
-        </menuitem>
+        />
+        <menuitem
+            id="filesharing_file_management_menu"
+            name="File management"
+            action="file_management"
+        />
     </menuitem>
 </odoo>

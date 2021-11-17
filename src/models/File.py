@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from odoo import models, fields
+from odoo import models, fields, api
+import logging
 
 
 class File(models.Model):
@@ -12,7 +13,7 @@ class File(models.Model):
     type = fields.Selection(
         selection=[('0', 'folder'), ('1', 'file')], required=True)
     parent = fields.Many2one('filesharing.file',
-                             required=True, index=True, default=0)
-    tags = fields.One2many('filesharing.file.tags', 'name')
+                             index=True, default=0)
+    tags = fields.Many2many('filesharing.file.tags', required=True)
     related_project = fields.Many2one(
-        'filesharing.project', string='Related project')
+        'filesharing.project', string='Related project', store=True)

@@ -14,5 +14,6 @@ class Divisi(models.Model):
             ('staf', 'Staf')
         ],
         required=True,
-        string="Nama jabatan"
+        string="Nama jabatan",
+        readonly=True,
     )

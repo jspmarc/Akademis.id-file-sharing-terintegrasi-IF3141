@@ -10,8 +10,8 @@ class Divisi(models.Model):
 
     name = fields.Selection(string="Nama divisi",
                             required=True,
-                            store=True,
-                            selection=FileTags.FileTags.divisionname)
+                            readonly=True,
+                            selection=FileTags.divisionname)
     profil = fields.One2many(
         'filesharing.profil', 'id', string='Profile')
     projects = fields.One2many(

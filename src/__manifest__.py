@@ -12,7 +12,9 @@
     'data': [
         'views/app-menu.xml',
         'views/user-tree.xml',
+        'views/file-tree.xml',
         'views/templates.xml',
+        'data/filesharing.file.csv',
         'data/filesharing.file.tags.csv',
         'data/filesharing.jabatan.csv',
         'data/filesharing.divisi.csv',
