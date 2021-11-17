@@ -9,9 +9,9 @@ class Divisi(models.Model):
 
     name = fields.Selection(
         selection=[
-            ('0', 'admin'),
-            ('1', 'BoD'),
-            ('2', 'staf')
+            ('admin', 'Admin'),
+            ('bod', 'BoD'),
+            ('staf', 'Staf')
         ],
         required=True,
         string="Nama jabatan"
