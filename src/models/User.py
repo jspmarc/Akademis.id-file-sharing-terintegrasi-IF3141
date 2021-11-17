@@ -10,12 +10,13 @@ class User(models.Model):
     _description = 'User yang dapat mengakses sistem.'
 
     user_id = fields.Many2one('res.users', required=True)
-    name = fields.Char(related='user_id.name')
-    email = fields.Char(related='user_id.email')
+    name = fields.Char(related='user_id.name', required=True)
+    email = fields.Char(related='user_id.email',
+                        store=True, index=True)
     password = fields.Char(
         default=lambda self: token_urlsafe(6), required=True)
-    jabatan = fields.Many2one('filesharing.jabatan', required=True)
-    divisi = fields.Many2one('filesharing.divisi', required=True)
+    jabatan = fields.Many2one('filesharing.jabatan', required=True, index=True)
+    divisi = fields.Many2one('filesharing.divisi', required=True, index=True)
 
     @api.model_create_multi
     def create(self, vals):
