@@ -4,21 +4,21 @@ from odoo import models, fields
 
 
 class File(models.Model):
-    _name = 'model.file_sharing.file'
+    _name = 'filesharing.file'
     _description = 'File dan folder yang membentuk struktur data pada sistem.'
 
-    name = fields.Char(String='Nama file', index=True, required=True)
-    link = fields.Char(String="Link ke file", required=True)
+    name = fields.Char(string='Nama file', index=True, required=True)
+    link = fields.Char(string="Link ke file", required=True)
     type = fields.Selection(
         selection=[('0', 'folder'), ('1', 'file')], required=True)
-    parent = fields.Many2one('model.file_sharing.file',
+    parent = fields.Many2one('filesharing.file',
                              required=True, index=True)
-    tags = fields.One2many('model.file_sharing.file.tags',
-                           'name', string='')
+    tags = fields.One2many('filesharing.file.tags',
+                           'name')
 
 
 class FileTags(models.Model):
-    _name = 'model.file_sharing.file.tags'
+    _name = 'filesharing.file.tags'
     _description = 'Tag yang ada di sebuah file.'
 
-    name = fields.Char(String='Nama tag', required=True)
+    name = fields.Char(string='Nama tag', required=True)

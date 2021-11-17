@@ -1,7 +1,7 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_user,access_user,model.file_sharing.user,,1,1,1,1
-access_divisi,access_divisi,model.file_sharing.divisi,,1,1,1,1
-access_jabatan,access_jabatan,model.file_sharing.jabatan,,1,1,1,1
-access_profil,access_profil,model.file_sharing.profil,,1,1,1,1
-access_file,access_file,model.file_sharing.file,,1,1,1,1
-access_tags,access_tags,model.file_sharing.tags,,1,1,1,1
+access_user,access.user,model_filesharing_user,base.group_user,1,1,1,1
+access_divisi,access.divisi,model_filesharing_divisi,base.group_user,1,1,1,1
+access_jabatan,access.jabatan,model_filesharing_jabatan,base.group_user,1,1,1,1
+access_profil,access.profil,model_filesharing_profil,base.group_user,1,1,1,1
+access_file,access.file,model_filesharing_file,base.group_user,1,1,1,1
+access_tags,access.tags,model_filesharing_file_tags,base.group_user,1,1,1,1

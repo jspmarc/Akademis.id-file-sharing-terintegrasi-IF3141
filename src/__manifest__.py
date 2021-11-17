@@ -10,10 +10,10 @@
     'version': '1.0',
     'depends': ['base'],
     'data': [
-        # 'security/ir.model.access.csv',
         'views/user.xml',
         'views/user-action.xml',
         'views/user-menu.xml',
+        'security/ir.model.access.csv',
     ],
     'demo': ['demo/demo.xml'],
     'qweb': [''],
