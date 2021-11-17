@@ -1,7 +1,7 @@
 <odoo>
   <data>
     <record model="ir.ui.view" id="filesharing_view_file_tree_view">
-      <field name="name">XML Coba</field>
+      <field name="name">File Sharing File View</field>
       <field name="model">filesharing.file</field>
       <field name="arch" type="xml">
         <tree>

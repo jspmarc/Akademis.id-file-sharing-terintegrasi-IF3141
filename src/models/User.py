@@ -17,6 +17,8 @@ class User(models.Model):
         default=lambda self: token_urlsafe(6), required=True)
     jabatan = fields.Many2one('filesharing.jabatan', required=True, index=True)
     divisi = fields.Many2one('filesharing.divisi', required=True, index=True)
+    need_password_change = fields.Boolean(
+        'Butuh perubahan password', default=True, required=True)
 
     @api.model_create_multi
     def create(self, vals):
