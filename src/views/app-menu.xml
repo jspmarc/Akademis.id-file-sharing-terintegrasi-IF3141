@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="user_management" model="ir.actions.act_window">
+        <field name="name">User Management</field>
+        <field name="res_model">filesharing.user</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="filesharing_root_menu" name="File Sharing">
+        <menuitem
+            id="filesharing_user_management_menu"
+            name="User management"
+            action="user_management"
+        >
+        </menuitem>
+    </menuitem>
+</odoo>

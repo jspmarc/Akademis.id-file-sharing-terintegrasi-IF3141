@@ -1,0 +1,16 @@
+<odoo>
+  <data>
+    <record model="ir.ui.view" id="xml_coba_user">
+      <field name="name">XML Coba</field>
+      <field name="model">filesharing.user</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name" />
+          <field name="email" />
+          <field name="jabatan" />
+          <field name="divisi" />
+        </tree>
+      </field>
+    </record>
+  </data>
+</odoo>
