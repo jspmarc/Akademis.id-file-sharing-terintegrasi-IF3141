@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-from odoo import models, fields
+from odoo import models, fields, api
 from hashlib import pbkdf2_hmac
-from secrets import token_hex
+from secrets import token_hex, token_urlsafe
 
 
 class User(models.Model):
@@ -10,34 +10,29 @@ class User(models.Model):
     _description = 'User yang dapat mengakses sistem.'
 
     user_id = fields.Many2one('res.users', required=True)
-    name = fields.Char(related='user_id.name',
-                       required=True, store=True)
-    email = fields.Char(related='user_id.email', required=True, store=True)
+    name = fields.Char(related='user_id.name')
+    email = fields.Char(related='user_id.email')
     password = fields.Char(
-        default=lambda self: self._generate_new_password()[0], readonly=True)
+        default=lambda self: token_urlsafe(6), required=True)
     jabatan = fields.Many2one('filesharing.jabatan', required=True)
     divisi = fields.Many2one('filesharing.divisi', required=True)
 
-    def _generate_new_password(self):
+    @api.model_create_multi
+    def create(self, vals):
+        result = super(User, self).create(vals)
+        result['password'] = self._secure_password(result['password'])
+
+        return result
+
+    def _secure_password(self, unsecure_password):
         '''
         Fungsi untuk membuat sebuah password random baru
         '''
-        rand = token_hex(6)
         salt = self._generate_salt()
-        password = rand + '$' + salt
+        password = salt + unsecure_password + salt
 
-        # return (
-        #     password,
-        #     pbkdf2_hmac('sha512', bytearray(password, 'utf-8'),
-        #                 bytearray(salt, 'utf-8'), 1000).hex()
-        # )
-        return rand
+        return pbkdf2_hmac('sha512', bytearray(password, 'utf-8'),
+                           bytearray(salt, 'utf-8'), 1000).hex() + '$' + salt
 
     def _generate_salt(self, n: int = 12) -> str:
         return token_hex(n)
-
-    # def __set_new_password(self):
-    #     '''
-    #     TODO
-    #     '''
-    #     pass
