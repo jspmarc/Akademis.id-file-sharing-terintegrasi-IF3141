@@ -20,12 +20,27 @@ class User(models.Model):
     need_password_change = fields.Boolean(
         'Butuh perubahan password', default=True, required=True)
 
-    @api.model_create_multi
+    @api.model  # It's either @api.model or @api.model_create_multi, gatau yang mana
     def create(self, vals):
         result = super(User, self).create(vals)
-        result['password'] = self._secure_password(result['password'])
+
+        # Ini pasti terlihat aneh, tapi percayalah ini harus dilakukan
+        # untuk hashing password.
+        # Secara internal, `result['password'] = ...` akan memanggil metode
+        # `self.write` dan hashing password dilakukan pada metode tersebut.
+        # Jika kode `result['password'] = ...` tidak ada, maka metode
+        # `self.write` tidak akan dipanggil. Jika dilakukan
+        # `result['password'] = self._secure_password(...)` jadi 2x hashing.
+        # Yes, I hate Odoo too.
+        result['password'] = result['password']
 
         return result
+
+    def write(self, vals):
+        vals['password'] = self._secure_password(vals['password'])
+        res = super(User, self).write(vals)
+
+        return res
 
     def _secure_password(self, unsecure_password):
         '''
