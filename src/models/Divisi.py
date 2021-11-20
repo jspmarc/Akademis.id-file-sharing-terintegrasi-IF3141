@@ -2,10 +2,11 @@
 
 from odoo import models, fields
 from . import FileTags
+from .._const import app_name
 
 
 class Divisi(models.Model):
-    _name = 'filesharing.divisi'
+    _name = f'{app_name}.divisi'
     _description = 'Divisi yang dapat dimiliki User'
 
     name = fields.Selection(string="Nama divisi",
@@ -13,6 +14,6 @@ class Divisi(models.Model):
                             readonly=True,
                             selection=FileTags.divisionname)
     profil = fields.One2many(
-        'filesharing.profil', 'id', string='Profile')
+        f'{app_name}.profil', 'id', string='Profile')
     projects = fields.One2many(
-        'filesharing.project', 'id', string='Projects')
+        f'{app_name}.project', 'id', string='Projects')

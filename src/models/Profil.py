@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 
 from odoo import models, fields
+from .._const import app_name
 
 
 class Profil(models.Model):
-    _name = 'filesharing.profil'
+    _name = f'{app_name}.profil'
     _description = 'Profil sebuah divisi'
 
     name = fields.Char(string='Nama link', required=True)

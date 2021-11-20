@@ -3,10 +3,11 @@
 from odoo import models, fields, api
 from hashlib import pbkdf2_hmac
 from secrets import token_hex, token_urlsafe
+from .._const import app_name
 
 
 class User(models.Model):
-    _name = 'filesharing.user'
+    _name = f'{app_name}.user'
     _description = 'User yang dapat mengakses sistem.'
 
     user_id = fields.Many2one('res.users', required=True)
@@ -15,8 +16,8 @@ class User(models.Model):
                         store=True, index=True)
     password = fields.Char(
         default=lambda self: token_urlsafe(6), required=True)
-    jabatan = fields.Many2one('filesharing.jabatan', required=True, index=True)
-    divisi = fields.Many2one('filesharing.divisi', required=True, index=True)
+    jabatan = fields.Many2one(f'{app_name}.jabatan', required=True, index=True)
+    divisi = fields.Many2one(f'{app_name}.divisi', required=True, index=True)
     need_password_change = fields.Boolean(
         'Butuh perubahan password', default=True, required=True)
 

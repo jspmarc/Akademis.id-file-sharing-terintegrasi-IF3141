@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 
 from odoo import models, fields
+from .._const import app_name
 
 
 class Divisi(models.Model):
-    _name = 'filesharing.jabatan'
+    _name = f'{app_name}.jabatan'
     _description = 'Jabatan yang dapat dimiliki User'
 
     name = fields.Selection(

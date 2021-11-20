@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from odoo import models, fields
+from .._const import app_name
 
 divisionname = [
     ('product-mt-to', 'Master Teacher Try Out'),
@@ -31,7 +32,7 @@ etc = [
 
 
 class FileTags(models.Model):
-    _name = 'filesharing.file.tags'
+    _name = f'{app_name}.file.tags'
     _description = 'Tag yang ada di sebuah file.'
 
     name = fields.Selection(string='Nama tag', required=True,
