@@ -8,16 +8,18 @@
     'author': '',
     'category': 'Uncategorized',
     'version': '1.0',
-    'depends': ['base'],
+    'depends': ['base', 'website'],
     'data': [
         'views/app-menu.xml',
-        'views/user-tree.xml',
-        'views/file-tree.xml',
-        'views/templates.xml',
+        'views/app-trees.xml',
+        'views/index.xml',
+        'views/error/400.xml',
+
         'data/filesharing.file.csv',
         'data/filesharing.file.tags.csv',
-        'data/filesharing.jabatan.csv',
         'data/filesharing.divisi.csv',
+
+        'groups/jabatan.xml',
         'security/ir.model.access.csv',
     ],
     'demo': ['demo/demo.xml'],

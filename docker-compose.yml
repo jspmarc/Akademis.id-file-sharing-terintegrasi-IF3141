@@ -26,6 +26,11 @@ services:
       - POSTGRES_PASSWORD=odoo
       - POSTGRES_DB=postgres
 
+  adminer:
+    image: adminer:4
+    ports:
+      - 8070:8080
+
 volumes:
   odoo-data:
   psql-data:

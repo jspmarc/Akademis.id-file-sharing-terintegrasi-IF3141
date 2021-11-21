@@ -15,5 +15,3 @@ class File(models.Model):
     parent = fields.Many2one(f'{app_name}.file',
                              index=True, default=0)
     tags = fields.Many2many(f'{app_name}.file.tags', required=True)
-    related_project = fields.Many2one(
-        f'{app_name}.project', string='Related project', store=True)

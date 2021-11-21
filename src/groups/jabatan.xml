@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="module_category_filesharing_jabatan" model="ir.module.category">
+        <field name="name">File Sharing Terintegrasi (Jabatan)</field>
+        <field name="description">Jabatan untuk aplikasi File Sharing Terintegrasi</field>
+    </record>
+
+    <record id="group_jabatan_staf" model="res.groups">
+        <field name="name">Staf</field>
+        <field name="category_id" ref="module_category_filesharing_jabatan" />
+    </record>
+
+    <record id="group_jabatan_bod" model="res.groups">
+        <field name="name">Board of Director</field>
+        <field name="category_id" ref="module_category_filesharing_jabatan" />
+        <field name="implied_ids" eval="[(4, ref('group_jabatan_staf'))]" />
+    </record>
+
+    <record id="group_jabatan_admin" model="res.groups">
+        <field name="name">Admin</field>
+        <field name="category_id" ref="module_category_filesharing_jabatan" />
+        <field name="implied_ids" eval="[(4, ref('group_jabatan_bod')), (4, ref('website.group_website_designer')), (4, ref('base.group_system'))]" />
+    </record>
+</odoo>

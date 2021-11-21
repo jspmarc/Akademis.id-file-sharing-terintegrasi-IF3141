@@ -1,27 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="user_management" model="ir.actions.act_window">
-        <field name="name">User Management</field>
-        <field name="res_model">filesharing.user</field>
-        <field name="view_mode">tree,form</field>
-    </record>
-
-    <record id="file_management" model="ir.actions.act_window">
-        <field name="name">File Management</field>
+    <record id="management_file" model="ir.actions.act_window">
+        <field name="name">Management File</field>
         <field name="res_model">filesharing.file</field>
         <field name="view_mode">tree,form</field>
     </record>
+    <record id="management_proyek" model="ir.actions.act_window">
+        <field name="name">Management Proyek</field>
+        <field name="res_model">filesharing.proyek</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record id="management_rahasia" model="ir.actions.act_window">
+        <field name="name">Management Rahasia</field>
+        <field name="res_model">filesharing.rahasia</field>
+        <field name="view_mode">tree,form</field>
+    </record>
 
-    <menuitem id="filesharing_root_menu" name="File Sharing">
-        <menuitem
-            id="filesharing_user_management_menu"
-            name="User management"
-            action="user_management"
-        />
-        <menuitem
-            id="filesharing_file_management_menu"
-            name="File management"
-            action="file_management"
-        />
+    <menuitem id="filesharing_root_menu" name="File Sharing" groups="file-sharing-terintegrasi.group_jabatan_admin">
+        <menuitem id="filesharing_file_management_menu" name="Management File" action="management_file" />
+        <menuitem id="filesharing_proyek_management_menu" name="Management Proyek" action="management_proyek" />
+        <menuitem id="filesharing_rahasia_management_menu" name="Management Rahasia" action="management_rahasia" />
     </menuitem>
 </odoo>
