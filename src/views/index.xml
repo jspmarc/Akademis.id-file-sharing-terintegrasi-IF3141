@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="index">
+        <t t-call="website.layout">
+            <t t-set="title">File Sharing Terintegrasi</t>
+            <div class="oe_structure">
+                <div class="oe_container">
+                    <t t-foreach="files" t-as="file">
+                        <p>
+                            <t t-esc="file.name" />
+                        </p>
+                    </t>
+                </div>
+            </div>
+        </t>
+    </template>
+
+</odoo>
