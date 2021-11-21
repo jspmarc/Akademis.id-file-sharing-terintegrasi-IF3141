@@ -1,5 +1,18 @@
 <odoo>
   <data>
+    <record model="ir.ui.view" id="filesharing_view_user_tree_view">
+      <field name="name">File Sharing Terintegrasi Users</field>
+      <field name="model">filesharing.user</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="id" />
+          <field name="user" />
+          <field name="jabatan" />
+          <field name="divisi" />
+        </tree>
+      </field>
+    </record>
+
     <record model="ir.ui.view" id="filesharing_view_file_tree_view">
       <field name="name">File Sharing Terintegrasi Files</field>
       <field name="model">filesharing.file</field>
@@ -18,18 +31,6 @@
     <record model="ir.ui.view" id="filesharing_view_proyek_tree_view">
       <field name="name">File Sharing Terintegrasi Proyek-proyek</field>
       <field name="model">filesharing.proyek</field>
-      <field name="arch" type="xml">
-        <tree>
-          <field name="id" />
-          <field name="name" />
-          <field name="file" />
-        </tree>
-      </field>
-    </record>
-
-    <record model="ir.ui.view" id="filesharing_view_proyek_tree_view">
-      <field name="name">File Sharing Terintegrasi Rahasia Perusahaan</field>
-      <field name="model">filesharing.rahasia</field>
       <field name="arch" type="xml">
         <tree>
           <field name="id" />

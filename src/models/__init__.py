@@ -1,3 +1,3 @@
 # -*- coding: utf-8 -*-
 
-from . import Divisi, File, FileTags, Profil, Proyek, Rahasia
+from . import Divisi, File, FileTags, Jabatan, Profil, Proyek, User

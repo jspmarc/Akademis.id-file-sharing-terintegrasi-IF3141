@@ -10,16 +10,18 @@
     'version': '1.0',
     'depends': ['base', 'website'],
     'data': [
+        'groups/jabatan.xml',
+
         'views/app-menu.xml',
         'views/app-trees.xml',
         'views/index.xml',
         'views/error/400.xml',
 
+        'data/filesharing.divisi.csv',
         'data/filesharing.file.csv',
         'data/filesharing.file.tags.csv',
-        'data/filesharing.divisi.csv',
+        'data/filesharing.jabatan.csv',
 
-        'groups/jabatan.xml',
         'security/ir.model.access.csv',
     ],
     'demo': ['demo/demo.xml'],

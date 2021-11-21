@@ -1,7 +1,8 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_divisi,access.divisi,model_filesharing_divisi,file-sharing-terintegrasi.group_jabatan_staf,1,1,1,1
-access_profil,access.profil,model_filesharing_profil,file-sharing-terintegrasi.group_jabatan_staf,1,1,1,1
-access_proyek,access.proyek,model_filesharing_proyek,file-sharing-terintegrasi.group_jabatan_bod,1,1,1,1
-access_file,access.file,model_filesharing_file,file-sharing-terintegrasi.group_jabatan_staf,1,1,1,1
-access_file_tags,access.file.tags,model_filesharing_file_tags,file-sharing-terintegrasi.group_jabatan_staf,1,1,1,1
-access_rahasia,access.rahasia,model_filesharing_rahasia,file-sharing-terintegrasi.group_jabatan_bod,1,1,1,1
+access_divisi,access.divisi,model_filesharing_divisi,file-sharing-terintegrasi.group_jabatan_karyawan,1,1,1,1
+access_profil,access.profil,model_filesharing_profil,file-sharing-terintegrasi.group_jabatan_karyawan,1,1,1,1
+access_proyek,access.proyek,model_filesharing_proyek,file-sharing-terintegrasi.group_jabatan_karyawan,1,1,1,1
+access_file,access.file,model_filesharing_file,file-sharing-terintegrasi.group_jabatan_karyawan,1,1,1,1
+access_file_tags,access.file.tags,model_filesharing_file_tags,file-sharing-terintegrasi.group_jabatan_karyawan,1,1,1,1
+access_jabatan,access.jabatan,model_filesharing_jabatan,file-sharing-terintegrasi.group_jabatan_karyawan,1,1,1,1
+access_user,access.user,model_filesharing_user,file-sharing-terintegrasi.group_jabatan_admin,1,1,1,1
