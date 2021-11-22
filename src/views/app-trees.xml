@@ -1,5 +1,6 @@
 <odoo>
   <data>
+
     <record model="ir.ui.view" id="filesharing_view_user_tree_view">
       <field name="name">File Sharing Terintegrasi Users</field>
       <field name="model">filesharing.user</field>
@@ -39,5 +40,31 @@
         </tree>
       </field>
     </record>
+
+    <record model="ir.ui.view" id="filesharing_view_divisi_tree_view">
+      <field name="name">File Sharing Terintegrasi Divisi</field>
+      <field name="model">filesharing.divisi</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="id" />
+          <field name="name" />
+          <field name="profil" />
+          <field name="proyek" />
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="filesharing_view_profil_tree_view">
+      <field name="name">File Sharing Terintegrasi Profil</field>
+      <field name="model">filesharing.profil</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="id" />
+          <field name="name" />
+          <field name="link" />
+        </tree>
+      </field>
+    </record>
+
   </data>
 </odoo>

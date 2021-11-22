@@ -15,6 +15,6 @@ class Divisi(models.Model):
                             readonly=True,
                             selection=division_name)
     profil = fields.One2many(
-        f'{app_name}.profil', 'id', string='Profile')
-    projects = fields.One2many(
-        f'{app_name}.project', 'id', string='Projects')
+        f'{app_name}.profil', 'divisi_owner', string='Profile')
+    proyek = fields.One2many(
+        f'{app_name}.proyek', 'divisi_owner', string='Proyek-proyek')

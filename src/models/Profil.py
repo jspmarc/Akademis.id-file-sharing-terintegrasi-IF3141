@@ -10,3 +10,5 @@ class Profil(models.Model):
 
     name = fields.Char(string='Nama link', required=True)
     link = fields.Char(required=True)
+    divisi_owner = fields.Many2one(
+        f'{app_name}.divisi', index=True, required=True)
