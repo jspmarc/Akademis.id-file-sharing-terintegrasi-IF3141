@@ -13,7 +13,7 @@
                             <t t-esc="data_err_msg" />
                         </p>
                     </div>
-                    <button id="err-back-btn" class="btn">
+                    <button id="err-back-btn" class="btn btn-primary">
                         <span class="material-icons">left_arrow</span>
                         Go back
                     </button>

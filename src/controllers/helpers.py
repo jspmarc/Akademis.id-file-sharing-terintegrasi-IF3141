@@ -46,3 +46,18 @@ def remove_secrets(file):
             break
 
     return not_secret
+
+
+def can_user_open(file, user):
+    can = user.divisi.id in file.tags.ids
+    secret_file = False
+    for tag in file.tags:
+        if tag.name == 'secret':
+            secret_file = True
+            break
+
+    if secret_file:
+        can = can and (user.jabatan.name ==
+                       'admin' or user.jabatan.name == 'bod')
+
+    return can

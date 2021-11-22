@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 from odoo import models, fields
-from . import FileTags
 from ._const import division_name
 from .._const import app_name
 
