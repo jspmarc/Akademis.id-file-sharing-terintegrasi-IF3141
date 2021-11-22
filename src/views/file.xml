@@ -13,7 +13,7 @@
                             </a>
                         </div>
                         <div class="row">
-                            <a t-attf-href="{{ '/' if (data_file.parent.id == 1) else '/folder/'+data_file.parent.id }}" class="align-items-center btn btn-info d-flex mr-2">
+                            <a t-attf-href="{{ '/' if (data_file.parent.id == 1) else '/folder/'+str(data_file.parent.id) }}" class="align-items-center btn btn-info d-flex mr-2">
                                 <span class="material-icons">arrow_back</span>
                                 Kembali
                             </a>

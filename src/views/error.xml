@@ -4,13 +4,25 @@
     <template id="error">
         <t t-call="website.layout">
             <div class="oe_structure">
-                <div class="oe_container text-red">
-                    <h1>
-                        <t t-esc="data_err_code" />
-                    </h1>
-                    <p>
-                        <t t-esc="data_err_msg" />
-                    </p>
+                <div class="oe_container">
+                    <div class="text-red">
+                        <h1>
+                            <t t-esc="data_err_code" />
+                        </h1>
+                        <p>
+                            <t t-esc="data_err_msg" />
+                        </p>
+                    </div>
+                    <button id="err-back-btn" class="btn">
+                        <span class="material-icons">left_arrow</span>
+                        Go back
+                    </button>
+                    <script type="text/javascript">
+                        document.querySelector('#err-back-btn').onclick = (e) => {
+                            e.preventDefault();
+                            window.history.back();
+                        };
+                    </script>
                 </div>
             </div>
         </t>

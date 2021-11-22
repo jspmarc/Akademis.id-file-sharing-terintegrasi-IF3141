@@ -24,8 +24,13 @@
 
                 <div class="col-8">
                     Direktori saat ini:
-                    <div class="bg-secondary d-inline-block px-3 py-2 w-100">
-                        <t t-esc="data_path" />
+                    <div class="bg-light d-inline-block overflow-auto px-3 py-2 w-100">
+                        <t t-foreach="data_path" t-as="path">
+                            <a t-att-href="path['link']">
+                                <t t-if="path['label'] != '/'"> / </t>
+                                <t t-esc="path['label']" />
+                            </a>
+                        </t>
                     </div>
                 </div>
             </div>
