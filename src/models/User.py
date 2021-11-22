@@ -11,7 +11,7 @@ class User(models.Model):
     user = fields.Many2one(
         'res.users', required=True, ondelete="cascade")
     jabatan = fields.Many2one(f'{app_name}.jabatan', required=True, index=True)
-    divisi = fields.Many2one(f'{app_name}.divisi', index=True)
+    divisi = fields.Many2one(f'{app_name}.divisi', required=True, index=True)
 
     @api.model
     def create(self, vals):

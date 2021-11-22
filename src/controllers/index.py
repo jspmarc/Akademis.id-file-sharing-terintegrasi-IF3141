@@ -17,8 +17,13 @@ class Index(http.Controller):
             selected_division = kw['div']
         else:
             selected_division = current_user.divisi.name
+
         projects = env[f'{app_name}.proyek'].search(
-            [('divisi_owner.name', '=?', selected_division)]
+            [
+                ('divisi_owner.name', '=?', selected_division),
+                ('tags.name', '=?', current_user.divisi.name if current_user.jabatan.name !=
+                 'admin' else False),
+            ]
         )
 
         all_divisions_raw = env[f'{app_name}.divisi'].search([])

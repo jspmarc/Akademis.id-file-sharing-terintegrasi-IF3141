@@ -5,4 +5,4 @@ access_proyek,access.proyek,model_filesharing_proyek,file-sharing-terintegrasi.g
 access_file,access.file,model_filesharing_file,file-sharing-terintegrasi.group_jabatan_karyawan,1,1,1,1
 access_file_tags,access.file.tags,model_filesharing_file_tags,file-sharing-terintegrasi.group_jabatan_karyawan,1,1,1,1
 access_jabatan,access.jabatan,model_filesharing_jabatan,file-sharing-terintegrasi.group_jabatan_karyawan,1,1,1,1
-access_user,access.user,model_filesharing_user,file-sharing-terintegrasi.group_jabatan_admin,1,1,1,1
+access_user,access.user,model_filesharing_user,file-sharing-terintegrasi.group_jabatan_karyawan,1,1,1,1
