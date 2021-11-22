@@ -6,8 +6,9 @@
         <!-- Files header -->
         <div class="container">
             <div class="row">
-                <form method="GET" action="/" class="col-4 mt-3">
-                    <select name="div" id="divisi-selector">
+
+                <div class="col-4 mt-3">
+                    <select name="div" id="divisi-selector" class="m-auto">
                         <t t-foreach="data_divisions_name" t-as="name">
                             <option t-att-value="name" t-att-selected="name == data_selected_division">
                                 <t t-esc="data_divisions_label[name]" />
@@ -20,9 +21,9 @@
 							window.location.replace(`/?div=${e.currentTarget.value}`);
 						};
 					</script>
-                </form>
+                </div>
 
-                <div class="col-8">
+                <div t-attf-class="{{ 'col-6' if data_current_file.id != 1 else 'col-8' }}">
                     Direktori saat ini:
                     <div class="bg-light d-inline-block overflow-auto px-3 py-2 w-100">
                         <t t-foreach="data_path" t-as="path">
@@ -33,6 +34,92 @@
                         </t>
                     </div>
                 </div>
+
+                <t t-if="data_current_file.id != 1">
+                    <div class="col-2">
+                        <!-- Modal button -->
+                        <button id="file-tambah-file-btn" class="btn btn-primary mx-auto mt-3 d-flex align-items-center" data-toggle="modal" data-target="#tambahFileModal">
+                            <span class="material-icons mr-1">add</span>
+                            Tambah file
+                        </button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="tambahFileModal" tabindex="-1" role="dialog" aria-labelledby="tambahFileModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="tambahFileModalLabel">Tambah File</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">×</span>
+                                        </button>
+                                    </div>
+
+                                    <form id="tambah-file-form" action="/file/add" method="POST" class="modal-body">
+                                        <div>
+                                            <label for="file_name">Nama file</label>
+                                            <input type="text" name="name" id="file_name" placeholder="Nama file" required="" />
+                                        </div>
+
+                                        <div>
+                                            <label for="file_link">Link</label>
+                                            <input type="text" name="link" id="file_link" placeholder="Link" pattern="^https?:\/\/.+$" />
+                                        </div>
+
+                                        <div>
+                                            <label for="file_type">Tipe file</label>
+                                            <select name="type" id="file_type" required="">
+                                                <option value="file">File</option>
+                                                <option value="folder" selected="">Folder</option>
+                                            </select>
+                                        </div>
+
+                                        <t t-if="data_can_see_secret">
+                                            <div>
+                                                <input type="checkbox" name="is_secret" id="file_secret" />
+                                                <label for="file_secret">Mark as a secret file/folder.</label>
+                                            </div>
+                                        </t>
+
+                                        <!-- Hidden stuff -->
+                                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
+                                        <input type="hidden" name="parent" t-att-value="data_current_file.id" />
+                                        <input type="hidden" name="tags" t-attf-value="{{ ','.join([tag.name for tag in data_current_file.tags]) }}" />
+                                    </form>
+
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-primary" form="tambah-file-form">Save changes</button>
+                                    </div>
+
+                                    <script type="text/javascript">
+                                        const form = document.querySelector('#tambah-file-form');
+                                        const inputLink = document.querySelector('#file_link');
+                                        const inputType = document.querySelector('#file_type');
+
+                                        inputType.onchange = () => inputLink.required = inputType.value == 'file'
+
+                                        form.onsubmit = async (e) => {
+                                            e.preventDefault();
+                                            const body = new FormData(e.currentTarget);
+
+                                            const res = await fetch('/file/add', { method: 'POST', body });
+                                            console.log(res);
+
+                                            if (res.ok) {
+                                                alert('Berhasil menambah file.');
+                                                window.location.reload();
+                                            } else {
+                                                alert('Gagal menambah file. Silakan coba lagi atau hubungi admin.');
+                                            }
+                                        };
+                                    </script>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </t>
             </div>
         </div>
 

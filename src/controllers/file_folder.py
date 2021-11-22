@@ -55,5 +55,36 @@ class File_Folder(http.Controller):
             'data_divisions_label': all_divisions_label,
             'data_selected_division': current_folder,
             'data_path': path,
-            'data_is_root': False,
+            'data_current_file': current_folder,
+            'data_can_add_file': True,
+            'data_can_see_secret': not cannot_see_secret,
         })
+
+    @http.route(f'{base_url}file/add', auth='user')
+    def add_file_or_folder(self, **body):
+        env = http.request.env
+
+        import logging
+        logging.getLogger(__name__).info(body)
+
+        tags_name = body['tags'].split(',')
+        tags = []
+
+        if 'is_secret' in body:
+            tags_name.append('secret')
+            body.pop('is_secret')
+
+        logging.getLogger(__name__).info(tags_name)
+
+        for tag_name in tags_name:
+            logging.getLogger(__name__).info(tag_name)
+            tag = env[f'{app_name}.file.tags'].search([('name', '=', tag_name)])
+            tags.append((4, tag.id))
+
+        body['tags'] = tags
+
+        logging.getLogger(__name__).info(body)
+
+        env[f'{app_name}.file'].sudo().create(body)
+
+        return http.Response(status=201)

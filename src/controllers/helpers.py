@@ -7,7 +7,7 @@ def get_parent_to_root(env, id):
     path = []
 
     while cur_id and cur_id != 1:
-        current_file = env[f'{app_name}.file'].browse([id])
+        current_file = env[f'{app_name}.file'].browse([cur_id])
 
         current_file_dic = {}
         current_file_dic['link'] = f'/{current_file.type}/{current_file.id}'
