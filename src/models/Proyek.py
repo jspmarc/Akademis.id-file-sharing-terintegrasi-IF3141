@@ -13,3 +13,6 @@ class Project(models.Model):
 
     file = fields.Many2one(
         f'{app_name}.file', required=True, ondelete="cascade", delegate=True, auto_join=True)
+
+    divisi_owner = fields.Many2one(
+        f'{app_name}.divisi', index=True, required=True)

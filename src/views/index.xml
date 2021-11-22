@@ -1,19 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <template id="index">
-        <t t-call="website.layout">
-            <t t-set="title">File Sharing Terintegrasi</t>
-            <div class="oe_structure">
-                <div class="oe_container">
-                    <t t-foreach="files" t-as="file">
-                        <p>
-                            <t t-esc="file.name" />
-                        </p>
-                    </t>
-                </div>
-            </div>
-        </t>
-    </template>
+	<template id="index">
+		<t t-call="website.layout">
+			<t t-set="title">File Sharing Terintegrasi</t>
+			<div class="oe_structure">
+				<div class="oe_container container">
+					<div class="row justify-content-start">
+						<t t-foreach="shown_files" t-as="file">
+							<!-- TODO: pake /file/ kah?-->
+							<div class="col-3" style="text-align: center;">
+								<a t-attf-href="/file/{{ file.id }}" class="card" style="margin: 1rem 0.3rem; width: 13rem;">
+									<span class="card-img-top material-icons" style="font-size: 8rem;">
+										<t t-if="file.type == '1'">description</t>
+										<t t-else="">folder</t>
+									</span>
+									<div class="card-body">
+										<h5 class="card-title">
+											<t t-esc="file.name" />
+										</h5>
+									</div>
+								</a>
+							</div>
+						</t>
+					</div>
+				</div>
+			</div>
+		</t>
+	</template>
 
 </odoo>
