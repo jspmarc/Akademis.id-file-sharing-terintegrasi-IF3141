@@ -1,4 +1,3 @@
-import logging
 from .._const import app_name
 
 
@@ -6,12 +5,8 @@ def get_parent_to_root(env, id):
     cur_id = id
 
     path = []
-    logger = logging.getLogger(__name__)
 
     while cur_id and cur_id != 1:
-        logger.info('-----------------------')
-        logger.info(cur_id)
-        logger.info('-----------------------')
         current_file = env[f'{app_name}.file'].browse([id])
 
         current_file_dic = {}
@@ -22,10 +17,6 @@ def get_parent_to_root(env, id):
         path.insert(0, current_file_dic)
 
     path.insert(0, {'link': '/', 'label': 'root'})
-
-    logger.info('-----------------------')
-    logger.info(path)
-    logger.info('-----------------------')
 
     return path
 

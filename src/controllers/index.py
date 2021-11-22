@@ -38,4 +38,5 @@ class Index(http.Controller):
             'data_divisions_label': all_divisions_label,
             'data_selected_division': selected_division,
             'data_path': [{'link': '/', 'label': 'root'}],
+            'data_is_root': True,
         })

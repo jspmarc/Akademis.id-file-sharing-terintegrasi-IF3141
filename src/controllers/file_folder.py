@@ -55,4 +55,5 @@ class File_Folder(http.Controller):
             'data_divisions_label': all_divisions_label,
             'data_selected_division': current_folder,
             'data_path': path,
+            'data_is_root': False,
         })
