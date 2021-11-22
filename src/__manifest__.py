@@ -16,6 +16,7 @@
         'views/app-trees.xml',
 
         'views/file-section.xml',
+        'views/file-header-section.xml',
         'views/index.xml',
         'views/error/400.xml',
 

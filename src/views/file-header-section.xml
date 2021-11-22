@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="file_header_section">
+
+        <!-- Files header -->
+        <div class="container">
+            <div class="row">
+                <form method="GET" action="/" class="col-4 mt-3">
+                    <select name="div" id="divisi-selector">
+                        <t t-foreach="data_divisions_name" t-as="name">
+                            <option t-att-value="name" t-att-selected="name == data_selected_division">
+                                <t t-esc="data_divisions_label[name]" />
+                            </option>
+                        </t>
+                    </select>
+                    <script type="text/javascript">
+						const selection = document.querySelector('#divisi-selector');
+						selection.onchange = (e) => {
+							window.location.replace(`/?div=${e.currentTarget.value}`);
+						};
+					</script>
+                </form>
+
+                <div class="col-8">
+                    Direktori saat ini:
+                    <div class="bg-secondary d-inline-block px-3 py-2 w-100">
+                        <t t-esc="data_path" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </template>
+
+</odoo>

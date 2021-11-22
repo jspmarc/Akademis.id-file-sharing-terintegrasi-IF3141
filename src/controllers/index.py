@@ -1,25 +1,26 @@
 # -*- coding: utf-8 -*-
 from odoo import http
 from .._const import app_name, base_url, complete_app_name
-import logging
 
 
 class Index(http.Controller):
-    __logger = logging.getLogger(__name__)
-
     @http.route(f'{base_url}', auth='user', website=True)
     def index(self, **kw):
         env = http.request.env
 
-        current_user = env['filesharing.user'].search(
+        current_user = env[f'{app_name}.user'].search(
             [
                 ('user.id', '=', str(http.request.uid))
             ]
         )
-        selected_division = kw['div']
+        if 'div' in kw:
+            selected_division = kw['div']
+        else:
+            selected_division = current_user.divisi.name
         projects = env[f'{app_name}.proyek'].search(
             [('divisi_owner.name', '=?', selected_division)]
         )
+
         all_divisions_raw = env[f'{app_name}.divisi'].search([])
         all_divisions_name = []
         all_divisions_label = {}
@@ -36,5 +37,6 @@ class Index(http.Controller):
             'data_shown_files': projects,
             'data_divisions_name': all_divisions_name,
             'data_divisions_label': all_divisions_label,
-            'data_selected_division': kw['div'],
+            'data_selected_division': selected_division,
+            'data_path': '/',
         })

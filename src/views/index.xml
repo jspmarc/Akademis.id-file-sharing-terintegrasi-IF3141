@@ -7,18 +7,8 @@
 			<div class="oe_structure">
 				<div class="oe_container">
 
-					<!-- Select -->
-					<form method="GET" action="/" id="divisi-selector" class="container mt-3">
-						<div class="row">
-							<select name="div" id="div" class="col">
-								<t t-foreach="data_divisions_name" t-as="name">
-									<option t-att-value="name" t-att-selected="name == data_selected_division">
-										<t t-esc="data_divisions_label[name]" />
-									</option>
-								</t>
-							</select>
-						</div>
-					</form>
+					<!-- Files header -->
+					<t t-call="file-sharing-terintegrasi.file_header_section" />
 
 					<!-- File -->
 					<t t-call="file-sharing-terintegrasi.file_section" />
