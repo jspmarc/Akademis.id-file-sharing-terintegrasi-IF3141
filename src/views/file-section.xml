@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="file_section">
+        <div class="container">
+            <div class="row justify-content-start">
+                <t t-foreach="data_shown_files" t-as="file">
+                    <div class="col-3" style="text-align: center;">
+                        <a t-attf-href="/{{ file.type }}/{{ file.id }}" class="card" style="margin: 1rem 0.3rem; width: 13rem;">
+                            <span class="card-img-top material-icons" style="font-size: 8rem;">
+                                <t t-if="file.type == 'file'">description</t>
+                                <t t-else="">folder</t>
+                            </span>
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <t t-esc="file.name" />
+                                </h5>
+                            </div>
+                        </a>
+                    </div>
+                </t>
+            </div>
+        </div>
+    </template>
+
+</odoo>

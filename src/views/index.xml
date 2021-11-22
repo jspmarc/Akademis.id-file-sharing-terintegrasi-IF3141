@@ -5,25 +5,24 @@
 		<t t-call="website.layout">
 			<t t-set="title">File Sharing Terintegrasi</t>
 			<div class="oe_structure">
-				<div class="oe_container container">
-					<div class="row justify-content-start">
-						<t t-foreach="shown_files" t-as="file">
-							<!-- TODO: pake /file/ kah?-->
-							<div class="col-3" style="text-align: center;">
-								<a t-attf-href="/{{ file.type }}/{{ file.id }}" class="card" style="margin: 1rem 0.3rem; width: 13rem;">
-									<span class="card-img-top material-icons" style="font-size: 8rem;">
-										<t t-if="file.type == 'file'">description</t>
-										<t t-else="">folder</t>
-									</span>
-									<div class="card-body">
-										<h5 class="card-title">
-											<t t-esc="file.name" />
-										</h5>
-									</div>
-								</a>
-							</div>
-						</t>
-					</div>
+				<div class="oe_container">
+
+					<!-- Select -->
+					<form method="GET" action="/" id="divisi-selector" class="container mt-3">
+						<div class="row">
+							<select name="div" id="div" class="col">
+								<t t-foreach="data_divisions_name" t-as="name">
+									<option t-att-value="name" t-att-selected="name == data_selected_division">
+										<t t-esc="data_divisions_label[name]" />
+									</option>
+								</t>
+							</select>
+						</div>
+					</form>
+
+					<!-- File -->
+					<t t-call="file-sharing-terintegrasi.file_section" />
+
 				</div>
 			</div>
 		</t>

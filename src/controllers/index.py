@@ -11,9 +11,30 @@ class Index(http.Controller):
     def index(self, **kw):
         env = http.request.env
 
-        files = env[f'{app_name}.file'].search([])
-        projects = env[f'{app_name}.proyek'].search([])
+        current_user = env['filesharing.user'].search(
+            [
+                ('user.id', '=', str(http.request.uid))
+            ]
+        )
+        selected_division = kw['div']
+        projects = env[f'{app_name}.proyek'].search(
+            [('divisi_owner.name', '=?', selected_division)]
+        )
+        all_divisions_raw = env[f'{app_name}.divisi'].search([])
+        all_divisions_name = []
+        all_divisions_label = {}
+
+        for divisi in all_divisions_raw:
+            # Buat dapetin label
+            label = dict(divisi._fields['name'].selection)[divisi.name]
+            name = divisi.name
+
+            all_divisions_label[name] = label
+            all_divisions_name.append(name)
 
         return http.request.render(f'{complete_app_name}.index', {
-            'shown_files': files
+            'data_shown_files': projects,
+            'data_divisions_name': all_divisions_name,
+            'data_divisions_label': all_divisions_label,
+            'data_selected_division': kw['div'],
         })
