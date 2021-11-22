@@ -10,9 +10,9 @@
 						<t t-foreach="shown_files" t-as="file">
 							<!-- TODO: pake /file/ kah?-->
 							<div class="col-3" style="text-align: center;">
-								<a t-attf-href="/file/{{ file.id }}" class="card" style="margin: 1rem 0.3rem; width: 13rem;">
+								<a t-attf-href="/{{ file.type }}/{{ file.id }}" class="card" style="margin: 1rem 0.3rem; width: 13rem;">
 									<span class="card-img-top material-icons" style="font-size: 8rem;">
-										<t t-if="file.type == '1'">description</t>
+										<t t-if="file.type == 'file'">description</t>
 										<t t-else="">folder</t>
 									</span>
 									<div class="card-body">
