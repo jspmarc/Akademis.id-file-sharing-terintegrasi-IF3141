@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="error">
+        <t t-call="website.layout">
+            <div class="oe_structure">
+                <div class="oe_container text-red">
+                    <h1>
+                        <t t-esc="data_err_code" />
+                    </h1>
+                    <p>
+                        <t t-esc="data_err_msg" />
+                    </p>
+                </div>
+            </div>
+        </t>
+    </template>
+
+</odoo>
