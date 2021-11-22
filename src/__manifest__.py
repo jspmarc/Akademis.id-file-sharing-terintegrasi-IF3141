@@ -15,6 +15,7 @@
         'views/app-menu.xml',
         'views/app-trees.xml',
 
+        'views/file.xml',
         'views/file-section.xml',
         'views/file-header-section.xml',
         'views/index.xml',

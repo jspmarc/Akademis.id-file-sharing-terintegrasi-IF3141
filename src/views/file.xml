@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="show_file">
+        <t t-call="website.layout">
+            <div class="oe_structure">
+                <div class="oe_container">
+                    <div class="container mb-2">
+                        <div class="row">
+                            File yang sedang dibuka:
+                            <a t-att-href="data_file.link" class="ml-1" target="_blank">
+                                <t t-esc="data_file.name" />
+                            </a>
+                        </div>
+                        <div class="row">
+                            <a t-attf-href="{{ '/' if (data_file.parent.id == 1) else '/folder/'+data_file.parent.id }}" class="align-items-center btn btn-info d-flex mr-2">
+                                <span class="material-icons">arrow_back</span>
+                                Kembali
+                            </a>
+                            <a t-att-href="data_file.link" class="align-items-center btn btn-secondary d-flex" target="_blank">
+                                <span class="material-icons">link</span>
+                                Buka file langsung
+                            </a>
+                        </div>
+                    </div>
+                    <iframe t-att-src="data_file.link" frameborder="5" style="width: 100vw; height: 70vh" />
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <template id="show_folder">
+        <t t-call="template_name" />
+    </template>
+
+</odoo>
