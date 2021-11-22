@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from odoo import http
-from .helpers import get_divisi_and_label
+from .helpers import get_divisi_and_label, remove_secrets
 from .._const import app_name, base_url, complete_app_name
 
 
@@ -23,8 +23,12 @@ class Index(http.Controller):
             ('divisi_owner.name', '=?', selected_division),
             ('tags.name', '=?', current_user.divisi.name if current_user.jabatan.name !=
              'admin' else False),
-            ('tags.name', '!=', False if can_see_secret else 'secret'),
+            # ('file.tags.name', '!=', 'secret'),
         ])
+
+        # FIXME: ini cursed but im too tired
+        if not can_see_secret:
+            projects = filter(remove_secrets, projects)
 
         (all_divisions_name, all_divisions_label) = get_divisi_and_label(env)
 

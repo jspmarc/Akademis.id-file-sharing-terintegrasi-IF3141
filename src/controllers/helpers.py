@@ -44,3 +44,14 @@ def get_divisi_and_label(env):
         all_divisions_name.append(name)
 
     return (all_divisions_name, all_divisions_label)
+
+
+def remove_secrets(file):
+    not_secret = True
+
+    for tag in file.tags:
+        if tag.name == 'secret':
+            not_secret = False
+            break
+
+    return not_secret
