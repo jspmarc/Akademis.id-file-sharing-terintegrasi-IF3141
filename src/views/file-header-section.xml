@@ -93,12 +93,12 @@
                                     </div>
 
                                     <script type="text/javascript">
-                                        const form = document.querySelector('#tambah-file-form');
+                                        const formTambahFile = document.querySelector('#tambah-file-form');
                                         const inputLink = document.querySelector('#file_link');
                                         const inputType = document.querySelector('#file_type');
 
                                         inputType.onchange = () => inputLink.required = inputType.value == 'file'
-                                        form.addEventListener('submit', async (e) => {
+                                        formTambahFile.addEventListener('submit', async (e) => {
                                             e.preventDefault();
                                             const body = new FormData(e.currentTarget);
 
