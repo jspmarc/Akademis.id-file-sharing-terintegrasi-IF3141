@@ -40,4 +40,5 @@ class Index(http.Controller):
             'data_path': [{'link': '/', 'label': 'root'}],
             'data_current_file': env[f'{app_name}.file'].browse([1]),
             'data_can_add_file': False,
+            'data_can_see_secret': can_see_secret,
         })

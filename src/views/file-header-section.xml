@@ -77,7 +77,7 @@
                                         <t t-if="data_can_see_secret">
                                             <div>
                                                 <input type="checkbox" name="is_secret" id="file_secret" />
-                                                <label for="file_secret">Tandai sebagai folder/file rahasia.</label>
+                                                <label for="file_secret">Tandai sebagai folder/file rahasia <span class="text-warning">(Aksi ini tidak bisa diundo)</span>.</label>
                                             </div>
                                         </t>
 

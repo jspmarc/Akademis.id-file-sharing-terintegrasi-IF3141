@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
+from os import curdir
 from odoo import http
 from .error import render_err
-from .helpers import get_divisi_and_label, get_parent_to_root, remove_secrets, can_user_open
+from .helpers import get_divisi_and_label, get_parent_to_root, remove_secrets, can_user_open, get_tags_from_list_of_names
 from .._const import app_name, base_url, complete_app_name
 
 
@@ -72,18 +73,12 @@ class File_Folder(http.Controller):
         env = http.request.env
 
         tags_name = body['tags'].split(',')
-        tags = []
 
         if 'is_secret' in body:
             tags_name.append('secret')
             body.pop('is_secret')
 
-        for tag_name in tags_name:
-            tag = env[f'{app_name}.file.tags'].search(
-                [('name', '=', tag_name)])
-            tags.append((4, tag.id))
-
-        body['tags'] = tags
+        body['tags'] = get_tags_from_list_of_names(tags_name, env)
 
         env[f'{app_name}.file'].sudo().create(body)
 
@@ -93,16 +88,32 @@ class File_Folder(http.Controller):
     def delete(self, **body):
         env = http.request.env
 
+        id = body['id']
         env[f'{app_name}.file'].browse([id]).unlink()
 
         return http.Response(status=200)
 
     @http.route(f'{base_url}file/edit', auth='user')
     def edit(self, **body):
-        import logging
+        env = http.request.env
 
-        logging.getLogger(__name__).info('--------------------------------')
-        logging.getLogger(__name__).info(body)
-        logging.getLogger(__name__).info('--------------------------------')
+        current_file = env[f'{app_name}.file'].browse([body['target_id']])
+        body.pop('target_id')
+        tags_name = body['tags'].split(',')
+
+        if 'is_secret' in body:
+            body.pop('is_secret')
+            if 'secret' not in tags_name:
+                tags_name.append('secret')
+        elif 'is_secret' not in body and 'secret' in tags_name:
+            tags_name.remove('secret')
+
+        ids = [tag[1] for tag in get_tags_from_list_of_names(tags_name, env)]
+        body['tags'] = [(6, 0, ids)]
+        body['parent'] = int(body['parent'])
+
+        body.pop('parent')
+        current_file.write(body)
+        current_file.flush()
 
         return http.Response(status=200)

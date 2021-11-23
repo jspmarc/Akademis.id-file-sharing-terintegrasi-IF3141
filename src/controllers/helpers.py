@@ -1,4 +1,5 @@
 from .._const import app_name
+import logging
 
 
 def get_parent_to_root(env, id):
@@ -61,3 +62,12 @@ def can_user_open(file, user):
                        'admin' or user.jabatan.name == 'bod')
 
     return can
+
+
+def get_tags_from_list_of_names(tags_name, env):
+    tags = []
+    for tag_name in tags_name:
+        tag = env[f'{app_name}.file.tags'].search([('name', '=', tag_name)])
+        tags.append((4, tag.id))
+
+    return tags
