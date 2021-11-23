@@ -68,11 +68,8 @@ class File_Folder(http.Controller):
         })
 
     @http.route(f'{base_url}file/add', auth='user')
-    def add_file_or_folder(self, **body):
+    def add(self, **body):
         env = http.request.env
-
-        import logging
-        logging.getLogger(__name__).info(body)
 
         tags_name = body['tags'].split(',')
         tags = []
@@ -81,18 +78,27 @@ class File_Folder(http.Controller):
             tags_name.append('secret')
             body.pop('is_secret')
 
-        logging.getLogger(__name__).info(tags_name)
-
         for tag_name in tags_name:
-            logging.getLogger(__name__).info(tag_name)
             tag = env[f'{app_name}.file.tags'].search(
                 [('name', '=', tag_name)])
             tags.append((4, tag.id))
 
         body['tags'] = tags
 
-        logging.getLogger(__name__).info(body)
-
         env[f'{app_name}.file'].sudo().create(body)
 
         return http.Response(status=201)
+
+    @http.route(f'{base_url}file/delete', auth='user')
+    def delete(self, **body):
+        env = http.request.env
+        from logging import getLogger
+        log = getLogger(__name__).info
+
+        log(body)
+        id = body['id']
+        test = env[f'{app_name}.file'].browse([id]).unlink()
+        log(test)
+        log(id)
+
+        return http.Response(status=200)
