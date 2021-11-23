@@ -55,7 +55,7 @@
                                         </button>
                                     </div>
 
-                                    <form id="tambah-file-form" action="/file/add" method="POST" class="modal-body">
+                                    <form id="tambah-file-form" action="/file/add" method="POST" class="modal-body d-flex flex-column align-items-center justify-content-center text-center">
                                         <div>
                                             <label for="file_name">Nama file</label>
                                             <input type="text" name="name" id="file_name" placeholder="Nama file" required="" />
@@ -77,14 +77,14 @@
                                         <t t-if="data_can_see_secret">
                                             <div>
                                                 <input type="checkbox" name="is_secret" id="file_secret" />
-                                                <label for="file_secret">Mark as a secret file/folder.</label>
+                                                <label for="file_secret">Tandai sebagai folder/file rahasia.</label>
                                             </div>
                                         </t>
 
                                         <!-- Hidden stuff -->
                                         <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
                                         <input type="hidden" name="parent" t-att-value="data_current_file.id" />
-                                        <input type="hidden" name="tags" t-attf-value="{{ ','.join([tag.name for tag in data_current_file.tags]) }}" />
+                                        <input type="hidden" name="tags" t-att-value="','.join([tag.name for tag in data_current_file.tags])" />
                                     </form>
 
                                     <div class="modal-footer">
@@ -98,13 +98,11 @@
                                         const inputType = document.querySelector('#file_type');
 
                                         inputType.onchange = () => inputLink.required = inputType.value == 'file'
-
-                                        form.onsubmit = async (e) => {
+                                        form.addEventListener('submit', async (e) => {
                                             e.preventDefault();
                                             const body = new FormData(e.currentTarget);
 
                                             const res = await fetch('/file/add', { method: 'POST', body });
-                                            console.log(res);
 
                                             if (res.ok) {
                                                 alert('Berhasil menambah file.');
@@ -112,7 +110,7 @@
                                             } else {
                                                 alert('Gagal menambah file. Silakan coba lagi atau hubungi admin.');
                                             }
-                                        };
+                                        });
                                     </script>
                                 </div>
                             </div>

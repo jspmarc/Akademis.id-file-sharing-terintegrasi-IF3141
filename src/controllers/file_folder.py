@@ -92,13 +92,17 @@ class File_Folder(http.Controller):
     @http.route(f'{base_url}file/delete', auth='user')
     def delete(self, **body):
         env = http.request.env
-        from logging import getLogger
-        log = getLogger(__name__).info
 
-        log(body)
-        id = body['id']
-        test = env[f'{app_name}.file'].browse([id]).unlink()
-        log(test)
-        log(id)
+        env[f'{app_name}.file'].browse([id]).unlink()
+
+        return http.Response(status=200)
+
+    @http.route(f'{base_url}file/edit', auth='user')
+    def edit(self, **body):
+        import logging
+
+        logging.getLogger(__name__).info('--------------------------------')
+        logging.getLogger(__name__).info(body)
+        logging.getLogger(__name__).info('--------------------------------')
 
         return http.Response(status=200)
