@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
-from os import curdir
 from odoo import http
 from .error import render_err
-from .helpers import get_divisi_and_label, get_parent_to_root, remove_secrets, can_user_open, get_tags_from_list_of_names
+from .helpers import get_divisi_and_label, get_parent_to_root, remove_secrets, can_user_open, get_tags_from_list_of_names, get_profiles_divisi
 from .._const import app_name, base_url, complete_app_name
 
 
@@ -26,7 +25,7 @@ class File_Folder(http.Controller):
         })
 
     @http.route(f'{base_url}folder/<int:id>', auth='user', website=True)
-    def folder(self, id):
+    def folder(self, id, div):
         if id == 1:
             return http.request.redirect('/')
 
@@ -61,7 +60,8 @@ class File_Folder(http.Controller):
             'data_shown_files': files,
             'data_divisions_name': all_divisions_name,
             'data_divisions_label': all_divisions_label,
-            'data_selected_division': current_folder,
+            'data_selected_division': div,
+            'data_profiles': get_profiles_divisi(env, div),
             'data_path': path,
             'data_current_file': current_folder,
             'data_can_add_file': True,

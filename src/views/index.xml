@@ -7,6 +7,9 @@
 			<div class="oe_structure">
 				<div class="oe_container">
 
+					<!-- Profil -->
+                    <t t-call="file-sharing-terintegrasi.profil_section"/>
+
 					<!-- Files header -->
 					<t t-call="file-sharing-terintegrasi.file_header_section" />
 

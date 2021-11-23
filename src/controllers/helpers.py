@@ -1,5 +1,4 @@
 from .._const import app_name
-import logging
 
 
 def get_parent_to_root(env, id):
@@ -71,3 +70,8 @@ def get_tags_from_list_of_names(tags_name, env):
         tags.append((4, tag.id))
 
     return tags
+
+def get_profiles_divisi(env, divisiName):
+    divisi = env[f'{app_name}.divisi'].search([('name', '=', divisiName)])
+
+    return divisi.profil

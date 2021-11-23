@@ -50,7 +50,7 @@
                                 <h5 class="card-title">
                                     <t t-esc="file.name" />
                                 </h5>
-                                <a t-attf-href="/{{ file.type }}/{{ file.file.id if data_current_file.id == 1 else file.id }}" class="btn btn-primary stretched-link">
+                                <a t-attf-href="/{{ file.type }}/{{ file.file.id if data_current_file.id == 1 else file.id }}/?div={{ data_selected_division }}" class="btn btn-primary stretched-link">
                                     Buka file
                                 </a>
                             </div>

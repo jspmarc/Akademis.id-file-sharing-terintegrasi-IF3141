@@ -19,6 +19,7 @@
         'views/file-section.xml',
         'views/file-header-section.xml',
         'views/index.xml',
+        'views/profil-section.xml',
         'views/error.xml',
 
         'data/filesharing.divisi.csv',

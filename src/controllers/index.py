@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from odoo import http
-from .helpers import get_divisi_and_label, remove_secrets
+from .helpers import get_divisi_and_label, remove_secrets, get_profiles_divisi
 from .._const import app_name, base_url, complete_app_name
 
 
@@ -37,6 +37,7 @@ class Index(http.Controller):
             'data_divisions_name': all_divisions_name,
             'data_divisions_label': all_divisions_label,
             'data_selected_division': selected_division,
+            'data_profiles': get_profiles_divisi(env, selected_division),
             'data_path': [{'link': '/', 'label': 'root'}],
             'data_current_file': env[f'{app_name}.file'].browse([1]),
             'data_can_add_file': False,

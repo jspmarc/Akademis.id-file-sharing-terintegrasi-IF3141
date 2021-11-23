@@ -55,7 +55,7 @@
                                         </button>
                                     </div>
 
-                                    <form id="tambah-file-form" action="/file/add" method="POST" class="modal-body d-flex flex-column align-items-center justify-content-center text-center">
+                                    <form id="tambah-file-form" class="modal-body d-flex flex-column align-items-center justify-content-center text-center">
                                         <div>
                                             <label for="file_name">Nama file</label>
                                             <input type="text" name="name" id="file_name" placeholder="Nama file" required="" />
